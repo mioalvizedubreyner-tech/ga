@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="es">
 
@@ -5,109 +6,1164 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Para alguien especial 🌻</title>
+    <title>Para ti 🌻</title>
 
-    <link rel="stylesheet" href="style.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            min-height: 100vh;
+            font-family: Georgia, "Times New Roman", serif;
+            overflow-x: hidden;
+            color: #4b3500;
+
+            background:
+                radial-gradient(circle at 50% 20%, #fffde7 0%, transparent 35%),
+                linear-gradient(180deg, #fff8c7, #ffe9a3 55%, #d6eead);
+        }
+
+        /* =========================
+           PANTALLA INICIAL
+        ========================= */
+
+        #inicio {
+            position: fixed;
+            inset: 0;
+            z-index: 1000;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            text-align: center;
+
+            background:
+                radial-gradient(circle, #fffbdc, #ffd95c 70%, #f2b900);
+            
+            transition: opacity 1.2s ease, visibility 1.2s ease;
+        }
+
+        #inicio.oculto {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+        }
+
+        .inicio-contenido {
+            width: min(90%, 650px);
+        }
+
+        .sol {
+            font-size: 90px;
+
+            animation:
+                aparecer 2s ease,
+                girarSol 8s linear infinite;
+
+            margin-bottom: 20px;
+        }
+
+        #inicio h1 {
+            font-size: clamp(2.3rem, 7vw, 5rem);
+            color: #7b4c00;
+            margin-bottom: 15px;
+        }
+
+        #inicio p {
+            font-size: 1.2rem;
+            color: #765b1b;
+            margin-bottom: 35px;
+        }
+
+        #comenzar {
+            border: none;
+            padding: 18px 38px;
+            border-radius: 50px;
+
+            background: #fff;
+            color: #b47700;
+
+            font-size: 1.1rem;
+            font-weight: bold;
+
+            cursor: pointer;
+
+            box-shadow: 0 10px 30px rgba(120, 80, 0, .25);
+
+            transition: .3s;
+        }
+
+        #comenzar:hover {
+            transform: scale(1.08);
+            box-shadow: 0 15px 40px rgba(120, 80, 0, .35);
+        }
+
+        /* =========================
+           CONTENIDO
+        ========================= */
+
+        main {
+            min-height: 100vh;
+            padding-bottom: 100px;
+        }
+
+        .hero {
+            min-height: 100vh;
+
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+
+            text-align: center;
+            padding: 40px 20px;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 8vw, 5rem);
+            color: #9a6500;
+
+            opacity: 0;
+            transform: translateY(30px);
+
+            animation: aparecer 1.5s 1s forwards;
+        }
+
+        .hero p {
+            margin-top: 15px;
+            font-size: 1.2rem;
+
+            opacity: 0;
+            animation: aparecer 1.5s 1.5s forwards;
+        }
+
+        /* =========================
+           JARDÍN
+        ========================= */
+
+        .jardin {
+            position: relative;
+
+            width: min(100%, 900px);
+            height: 430px;
+
+            margin-top: 40px;
+
+            display: flex;
+            justify-content: center;
+            align-items: flex-end;
+            gap: 60px;
+
+            border-bottom: 18px solid #5c923c;
+        }
+
+        .flor {
+            position: relative;
+
+            width: 150px;
+            height: 360px;
+
+            cursor: pointer;
+
+            transform-origin: bottom center;
+
+            animation: balanceo 4s ease-in-out infinite;
+        }
+
+        .flor:nth-child(2) {
+            animation-delay: .8s;
+            transform: scale(.85);
+        }
+
+        .flor:nth-child(3) {
+            animation-delay: 1.6s;
+            transform: scale(.95);
+        }
+
+        .flor:hover {
+            filter: brightness(1.08);
+        }
+
+        /* Pétalos */
+
+        .petalos {
+            position: absolute;
+
+            width: 150px;
+            height: 150px;
+
+            top: 0;
+            left: 0;
+
+            z-index: 3;
+        }
+
+        .petalo {
+            position: absolute;
+
+            width: 55px;
+            height: 85px;
+
+            left: 47px;
+            top: 32px;
+
+            border-radius: 50%;
+
+            background:
+                radial-gradient(circle at 50% 80%,
+                    #ffb300,
+                    #ffd52e 60%,
+                    #fff078);
+
+            transform-origin: 50% 43px;
+
+            transition: .3s;
+        }
+
+        .petalo:nth-child(1) {
+            transform: rotate(0deg);
+        }
+
+        .petalo:nth-child(2) {
+            transform: rotate(45deg);
+        }
+
+        .petalo:nth-child(3) {
+            transform: rotate(90deg);
+        }
+
+        .petalo:nth-child(4) {
+            transform: rotate(135deg);
+        }
+
+        .petalo:nth-child(5) {
+            transform: rotate(180deg);
+        }
+
+        .petalo:nth-child(6) {
+            transform: rotate(225deg);
+        }
+
+        .petalo:nth-child(7) {
+            transform: rotate(270deg);
+        }
+
+        .petalo:nth-child(8) {
+            transform: rotate(315deg);
+        }
+
+        .flor:hover .petalo {
+            filter: brightness(1.15);
+        }
+
+        /* Centro */
+
+        .centro {
+            position: absolute;
+
+            width: 72px;
+            height: 72px;
+
+            top: 70px;
+            left: 39px;
+
+            z-index: 5;
+
+            border-radius: 50%;
+
+            background:
+                radial-gradient(circle,
+                    #321805 0 20%,
+                    #60300b 21% 45%,
+                    #9b5b0e 46% 100%);
+
+            box-shadow:
+                0 5px 12px rgba(70, 35, 0, .3),
+                inset 0 0 10px rgba(0, 0, 0, .4);
+        }
+
+        /* Tallo */
+
+        .tallo {
+            position: absolute;
+
+            width: 14px;
+            height: 250px;
+
+            top: 125px;
+            left: 68px;
+
+            background:
+                linear-gradient(90deg,
+                    #28652f,
+                    #6baa43,
+                    #28652f);
+
+            border-radius: 20px;
+
+            z-index: 1;
+        }
+
+        /* Hojas */
+
+        .hoja {
+            position: absolute;
+
+            width: 85px;
+            height: 42px;
+
+            top: 220px;
+
+            background:
+                linear-gradient(135deg,
+                    #2f7935,
+                    #75b84b);
+
+            border-radius: 100% 0 100% 0;
+
+            z-index: 2;
+        }
+
+        .hoja-izquierda {
+            left: -5px;
+            transform: rotate(25deg);
+        }
+
+        .hoja-derecha {
+            right: -5px;
+            transform: rotate(155deg);
+        }
+
+        /* =========================
+           MENSAJE
+        ========================= */
+
+        .seccion {
+            width: min(90%, 850px);
+
+            margin: 80px auto;
+
+            text-align: center;
+        }
+
+        .seccion h2 {
+            font-size: clamp(2rem, 5vw, 3rem);
+            color: #956100;
+            margin-bottom: 25px;
+        }
+
+        .mensaje {
+            padding: 35px;
+
+            background: rgba(255, 255, 255, .6);
+
+            border: 1px solid rgba(255, 193, 7, .35);
+
+            border-radius: 30px;
+
+            box-shadow: 0 15px 40px rgba(90, 60, 0, .12);
+
+            backdrop-filter: blur(10px);
+
+            line-height: 1.8;
+            font-size: 1.15rem;
+        }
+
+        /* =========================
+           FLORES INTERACTIVAS
+        ========================= */
+
+        .botones-flores {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px;
+
+            margin-top: 30px;
+        }
+
+        .boton-flor {
+            border: 2px solid #e9b91b;
+
+            background: rgba(255, 255, 255, .7);
+
+            color: #795500;
+
+            padding: 14px 22px;
+
+            border-radius: 30px;
+
+            cursor: pointer;
+
+            font-size: 1rem;
+
+            transition: .3s;
+        }
+
+        .boton-flor:hover {
+            background: #ffd83d;
+            transform: translateY(-4px);
+        }
+
+        #mensajeFlor {
+            min-height: 50px;
+
+            margin-top: 25px;
+
+            font-size: 1.2rem;
+            font-weight: bold;
+
+            color: #8b5a00;
+        }
+
+        /* =========================
+           CARTA
+        ========================= */
+
+        .carta-contenedor {
+            perspective: 1000px;
+        }
+
+        .carta {
+            position: relative;
+
+            width: min(100%, 600px);
+            height: 340px;
+
+            margin: auto;
+
+            cursor: pointer;
+
+            transform-style: preserve-3d;
+
+            transition: transform 1s;
+        }
+
+        .carta.abierta {
+            transform: rotateY(180deg);
+        }
+
+        .cara {
+            position: absolute;
+            inset: 0;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            padding: 35px;
+
+            border-radius: 20px;
+
+            backface-visibility: hidden;
+
+            box-shadow: 0 15px 40px rgba(70, 45, 0, .2);
+        }
+
+        .frente {
+            background:
+                linear-gradient(135deg,
+                    #ffd83d,
+                    #ffe993);
+
+            font-size: 2rem;
+            font-weight: bold;
+
+            color: #795000;
+        }
+
+        .frente span {
+            display: block;
+            margin-top: 20px;
+            font-size: 1rem;
+        }
+
+        .atras {
+            background: #fffdf0;
+
+            transform: rotateY(180deg);
+
+            text-align: center;
+
+            line-height: 1.8;
+
+            font-size: 1.1rem;
+        }
+
+        /* =========================
+           BOTÓN FINAL
+        ========================= */
+
+        #lluvia {
+            border: none;
+
+            padding: 17px 30px;
+
+            border-radius: 50px;
+
+            background: #eeb900;
+
+            color: white;
+
+            font-size: 1rem;
+            font-weight: bold;
+
+            cursor: pointer;
+
+            transition: .3s;
+        }
+
+        #lluvia:hover {
+            transform: scale(1.08);
+        }
+
+        /* =========================
+           PÉTALOS QUE CAEN
+        ========================= */
+
+        .petalo-caida {
+            position: fixed;
+
+            top: -40px;
+
+            z-index: 900;
+
+            pointer-events: none;
+
+            animation: caer linear forwards;
+        }
+
+        /* =========================
+           CORAZONES
+        ========================= */
+
+        .corazon {
+            position: fixed;
+
+            pointer-events: none;
+
+            z-index: 950;
+
+            font-size: 25px;
+
+            animation: subir 2s ease-out forwards;
+        }
+
+        /* =========================
+           ANIMACIONES
+        ========================= */
+
+        @keyframes aparecer {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes girarSol {
+            from {
+                transform: rotate(0deg);
+            }
+
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        @keyframes balanceo {
+            0% {
+                transform: rotate(-3deg);
+            }
+
+            50% {
+                transform: rotate(3deg);
+            }
+
+            100% {
+                transform: rotate(-3deg);
+            }
+        }
+
+        @keyframes caer {
+            0% {
+                transform:
+                    translateY(-50px)
+                    rotate(0deg);
+                opacity: 0;
+            }
+
+            10% {
+                opacity: 1;
+            }
+
+            100% {
+                transform:
+                    translateY(110vh)
+                    rotate(720deg);
+                opacity: 0;
+            }
+        }
+
+        @keyframes subir {
+            0% {
+                transform:
+                    translate(-50%, 0)
+                    scale(.5);
+                opacity: 1;
+            }
+
+            100% {
+                transform:
+                    translate(-50%, -200px)
+                    scale(1.5);
+                opacity: 0;
+            }
+        }
+
+        /* =========================
+           MÓVIL
+        ========================= */
+
+        @media (max-width: 650px) {
+
+            .jardin {
+                height: 330px;
+                gap: 0;
+            }
+
+            .flor {
+                transform: scale(.65);
+                margin: -25px;
+            }
+
+            .flor:nth-child(2) {
+                transform: scale(.55);
+            }
+
+            .flor:nth-child(3) {
+                transform: scale(.6);
+            }
+
+            .mensaje {
+                padding: 25px 18px;
+            }
+
+            .carta {
+                height: 390px;
+            }
+        }
+    </style>
 </head>
 
 <body>
 
-    <div class="contenedor">
+    <!-- =========================
+         INTRODUCCIÓN
+    ========================= -->
 
-        <h1>🌻 Flores amarillas para ti 🌻</h1>
+    <section id="inicio">
 
-        <p class="subtitulo">
-            Porque hay personas que merecen recibir algo bonito.
-        </p>
+        <div class="inicio-contenido">
 
-        <div class="jardin">
+            <div class="sol">🌻</div>
 
-            <div class="flor">
-                <div class="petalos">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </div>
+            <h1>Hay algo para ti...</h1>
 
-                <div class="centro"></div>
+            <p>
+                Preparé este pequeño jardín especialmente para ti.
+            </p>
 
-                <div class="tallo"></div>
-                <div class="hoja hoja-izquierda"></div>
-                <div class="hoja hoja-derecha"></div>
-            </div>
-
-            <div class="flor flor-dos">
-                <div class="petalos">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </div>
-
-                <div class="centro"></div>
-
-                <div class="tallo"></div>
-                <div class="hoja hoja-izquierda"></div>
-                <div class="hoja hoja-derecha"></div>
-            </div>
-
-            <div class="flor flor-tres">
-                <div class="petalos">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </div>
-
-                <div class="centro"></div>
-
-                <div class="tallo"></div>
-                <div class="hoja hoja-izquierda"></div>
-                <div class="hoja hoja-derecha"></div>
-            </div>
+            <button id="comenzar">
+                Abrir mi sorpresa 💛
+            </button>
 
         </div>
 
-        <div class="mensaje">
-            <h2>Para ti 💛</h2>
+    </section>
+
+
+    <!-- =========================
+         CONTENIDO PRINCIPAL
+    ========================= -->
+
+    <main>
+
+        <section class="hero">
+
+            <h1>Flores amarillas para ti 🌻</h1>
 
             <p>
-                Estas flores amarillas son para recordarte
-                lo especial que eres.
+                Algunas flores se marchitan...
+                pero los momentos bonitos permanecen.
             </p>
+
+
+            <!-- JARDÍN -->
+
+            <div class="jardin">
+
+                <!-- FLOR 1 -->
+
+                <div class="flor" data-flor="1">
+
+                    <div class="petalos">
+
+                        <span class="petalo"></span>
+                        <span class="petalo"></span>
+                        <span class="petalo"></span>
+                        <span class="petalo"></span>
+                        <span class="petalo"></span>
+                        <span class="petalo"></span>
+                        <span class="petalo"></span>
+                        <span class="petalo"></span>
+
+                    </div>
+
+                    <div class="centro"></div>
+
+                    <div class="tallo"></div>
+
+                    <div class="hoja hoja-izquierda"></div>
+                    <div class="hoja hoja-derecha"></div>
+
+                </div>
+
+
+                <!-- FLOR 2 -->
+
+                <div class="flor" data-flor="2">
+
+                    <div class="petalos">
+
+                        <span class="petalo"></span>
+                        <span class="petalo"></span>
+                        <span class="petalo"></span>
+                        <span class="petalo"></span>
+                        <span class="petalo"></span>
+                        <span class="petalo"></span>
+                        <span class="petalo"></span>
+                        <span class="petalo"></span>
+
+                    </div>
+
+                    <div class="centro"></div>
+
+                    <div class="tallo"></div>
+
+                    <div class="hoja hoja-izquierda"></div>
+                    <div class="hoja hoja-derecha"></div>
+
+                </div>
+
+
+                <!-- FLOR 3 -->
+
+                <div class="flor" data-flor="3">
+
+                    <div class="petalos">
+
+                        <span class="petalo"></span>
+                        <span class="petalo"></span>
+                        <span class="petalo"></span>
+                        <span class="petalo"></span>
+                        <span class="petalo"></span>
+                        <span class="petalo"></span>
+                        <span class="petalo"></span>
+                        <span class="petalo"></span>
+
+                    </div>
+
+                    <div class="centro"></div>
+
+                    <div class="tallo"></div>
+
+                    <div class="hoja hoja-izquierda"></div>
+                    <div class="hoja hoja-derecha"></div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             MENSAJE
+        ========================= -->
+
+        <section class="seccion">
+
+            <h2>Hay algo que quiero decirte 💛</h2>
+
+            <div class="mensaje">
+
+                <p>
+                    No sé si una página web puede compararse
+                    con un ramo de flores...
+                </p>
+
+                <p>
+                    pero quise intentar hacer algo diferente.
+                </p>
+
+                <p>
+                    Algo que pudieras abrir y descubrir poco a poco.
+                </p>
+
+                <p>
+                    Porque hay personas que simplemente hacen
+                    que los días tengan un poquito más de color.
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             FLORES INTERACTIVAS
+        ========================= -->
+
+        <section class="seccion">
+
+            <h2>Descubre las flores 🌻</h2>
 
             <p>
-                Que nunca te falten motivos para sonreír,
-                personas que te quieran y momentos bonitos.
+                Cada una tiene algo que decirte.
             </p>
 
-            <p class="dedicatoria">
-                Con mucho cariño 🌻
+            <div class="botones-flores">
+
+                <button class="boton-flor" data-mensaje="🌻 La primera flor: Gracias por existir.">
+                    🌻 Flor 1
+                </button>
+
+                <button class="boton-flor" data-mensaje="💛 La segunda flor: Espero que siempre encuentres motivos para sonreír.">
+                    🌻 Flor 2
+                </button>
+
+                <button class="boton-flor" data-mensaje="✨ La tercera flor: Te mereces todas las cosas bonitas que la vida pueda darte.">
+                    🌻 Flor 3
+                </button>
+
+            </div>
+
+            <div id="mensajeFlor">
+                Elige una flor...
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             CARTA
+        ========================= -->
+
+        <section class="seccion">
+
+            <h2>También hay una carta para ti 💌</h2>
+
+            <p style="margin-bottom: 25px;">
+                Haz clic sobre ella.
             </p>
-        </div>
 
-        <button onclick="mostrarSorpresa()">
-            Haz clic aquí 💛
-        </button>
+            <div class="carta-contenedor">
 
-        <p id="sorpresa"></p>
+                <div class="carta" id="carta">
 
-    </div>
+                    <div class="cara frente">
 
-    <script src="script.js"></script>
+                        <div>
+                            💌
+                            <br>
+                            Una pequeña carta
+                            <span>
+                                Haz clic para abrirla
+                            </span>
+                        </div>
+
+                    </div>
+
+                    <div class="cara atras">
+
+                        <p>
+                            Si llegaste hasta aquí,
+                            quería que supieras algo...
+                            <br><br>
+
+                            Entre tantas personas,
+                            hay algunas que consiguen
+                            quedarse en nuestros pensamientos
+                            de una manera especial.
+                            <br><br>
+
+                            Y tú eres una de ellas. 🌻
+                            <br><br>
+
+                            <strong>
+                                Feliz día de las flores amarillas 💛
+                            </strong>
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             FINAL
+        ========================= -->
+
+        <section class="seccion">
+
+            <h2>Y todavía falta algo... 🌻</h2>
+
+            <p style="margin-bottom: 25px;">
+                Pulsa el botón.
+            </p>
+
+            <button id="lluvia">
+                Llenar todo de flores 🌻
+            </button>
+
+        </section>
+
+    </main>
+
+
+    <script>
+
+        /* =========================
+           INICIO
+        ========================= */
+
+        const inicio = document.getElementById("inicio");
+        const comenzar = document.getElementById("comenzar");
+
+        comenzar.addEventListener("click", () => {
+
+            inicio.classList.add("oculto");
+
+            lluviaPetalos(20);
+
+        });
+
+
+        /* =========================
+           FLORES INTERACTIVAS
+        ========================= */
+
+        const botones = document.querySelectorAll(".boton-flor");
+        const mensajeFlor = document.getElementById("mensajeFlor");
+
+        botones.forEach(boton => {
+
+            boton.addEventListener("click", () => {
+
+                mensajeFlor.textContent =
+                    boton.dataset.mensaje;
+
+                crearCorazones();
+
+            });
+
+        });
+
+
+        /* =========================
+           CARTA
+        ========================= */
+
+        const carta = document.getElementById("carta");
+
+        carta.addEventListener("click", () => {
+
+            carta.classList.toggle("abierta");
+
+            crearCorazones();
+
+        });
+
+
+        /* =========================
+           FLORES DEL JARDÍN
+        ========================= */
+
+        const flores = document.querySelectorAll(".flor");
+
+        flores.forEach((flor, indice) => {
+
+            flor.addEventListener("click", () => {
+
+                const mensajes = [
+
+                    "🌻 Esta flor floreció especialmente para ti.",
+
+                    "💛 Que nunca te falten razones para sonreír.",
+
+                    "✨ Algunas personas son como el sol: hacen más bonito el día."
+
+                ];
+
+                mensajeFlor.textContent = mensajes[indice];
+
+                crearCorazones();
+
+            });
+
+        });
+
+
+        /* =========================
+           LLUVIA DE FLORES
+        ========================= */
+
+        const botonLluvia =
+            document.getElementById("lluvia");
+
+        botonLluvia.addEventListener("click", () => {
+
+            lluviaPetalos(80);
+
+            crearCorazones();
+
+        });
+
+
+        function lluviaPetalos(cantidad) {
+
+            for (let i = 0; i < cantidad; i++) {
+
+                setTimeout(() => {
+
+                    const petalo =
+                        document.createElement("div");
+
+                    petalo.className =
+                        "petalo-caida";
+
+                    petalo.textContent = "🌻";
+
+                    petalo.style.left =
+                        Math.random() * 100 + "vw";
+
+                    petalo.style.fontSize =
+                        (15 + Math.random() * 25) + "px";
+
+                    petalo.style.animationDuration =
+                        (3 + Math.random() * 5) + "s";
+
+                    document.body.appendChild(petalo);
+
+                    setTimeout(() => {
+
+                        petalo.remove();
+
+                    }, 9000);
+
+                }, i * 60);
+
+            }
+
+        }
+
+
+        /* =========================
+           CORAZONES
+        ========================= */
+
+        function crearCorazones() {
+
+            for (let i = 0; i < 8; i++) {
+
+                setTimeout(() => {
+
+                    const corazon =
+                        document.createElement("div");
+
+                    corazon.className = "corazon";
+
+                    corazon.textContent =
+                        Math.random() > .5 ? "💛" : "✨";
+
+                    corazon.style.left =
+                        (30 + Math.random() * 40) + "vw";
+
+                    corazon.style.top =
+                        (45 + Math.random() * 20) + "vh";
+
+                    document.body.appendChild(corazon);
+
+                    setTimeout(() => {
+
+                        corazon.remove();
+
+                    }, 2200);
+
+                }, i * 120);
+
+            }
+
+        }
+
+
+        /* =========================
+           LLUVIA AUTOMÁTICA SUAVE
+        ========================= */
+
+        setInterval(() => {
+
+            if (!document.hidden) {
+
+                const petalo =
+                    document.createElement("div");
+
+                petalo.className =
+                    "petalo-caida";
+
+                petalo.textContent = "🌼";
+
+                petalo.style.left =
+                    Math.random() * 100 + "vw";
+
+                petalo.style.fontSize =
+                    "18px";
+
+                petalo.style.animationDuration =
+                    "7s";
+
+                document.body.appendChild(petalo);
+
+                setTimeout(() => {
+
+                    petalo.remove();
+
+                }, 8000);
+
+            }
+
+        }, 2500);
+
+    </script>
 
 </body>
+
 </html>
+```
